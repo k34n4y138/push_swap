@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "libft.h": "c",
+        "stack_moves.h": "c",
+        "stack_management.h": "c",
+        "main.h": "c"
+    }
+}
