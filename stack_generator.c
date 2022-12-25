@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:46:47 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/23 18:33:08 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/25 20:31:37 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ static int	str_isvalidnum(char *str, t_stack *stack)
 	int	val;
 	int	iter;
 
-	if (*str == '-')
-		str++;
+	val = 1;
+
+	if (*str == '-' && str++)
+		val = -1;
 	len = ft_strlen(str);
-	val = ft_atoi(str);
+	val *= ft_atoi(str);
 	if (len == 0
 		|| !isalldigit(str)
 		|| (len > 1 && len != calc_intlen(val)))

@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:34:18 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/23 18:30:06 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/25 12:58:54 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ typedef struct pstack
 	int		movescount;
 	int		stacksize;
 	int		sa_size;
-	char	*stack_a;
+	int		*stack_a;
 	int		sb_size;
-	char	*stack_b;
+	int		*stack_b;
 }				t_stack;
 
 // sa sb ss

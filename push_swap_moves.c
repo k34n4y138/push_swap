@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 13:22:46 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/23 19:54:57 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/25 13:10:28 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	push_a(t_stack *stack)
 {
 	if (stack->sb_size)
 	{
-		ft_memmove(stack->stack_a + 1, stack->stack_a, stack->sa_size++);
+		ft_memmove(stack->stack_a + 1, stack->stack_a, (stack->sa_size++) * sizeof(int));
 		stack->stack_a[0] = stack->stack_b[0];
-		ft_memmove(stack->stack_b, stack->stack_b + 1, --(stack->sb_size));
+		ft_memmove(stack->stack_b, stack->stack_b + 1, --(stack->sb_size) * sizeof(int));
 		ft_putstr_fd("pa\n", 1);
 		return (1);
 	}
@@ -29,9 +29,9 @@ int	push_b(t_stack *stack)
 {
 	if (stack->sa_size)
 	{
-		ft_memmove(stack->stack_b + 1, stack->stack_b, stack->sb_size++);
+		ft_memmove(stack->stack_b + 1, stack->stack_b, (stack->sb_size++) * sizeof(int));
 		stack->stack_b[0] = stack->stack_a[0];
-		ft_memmove(stack->stack_a, stack->stack_a + 1, --(stack->sa_size));
+		ft_memmove(stack->stack_a, stack->stack_a + 1, --(stack->sa_size) * sizeof(int));
 		ft_putstr_fd("pb\n", 1);
 		return (1);
 	}
