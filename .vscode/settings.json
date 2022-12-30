@@ -3,6 +3,8 @@
         "libft.h": "c",
         "stack_moves.h": "c",
         "stack_management.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "algos.h": "c",
+        "iterator": "c"
     }
 }

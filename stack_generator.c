@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:46:47 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/25 20:31:37 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/30 13:07:28 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@ static int	calc_intlen(int n)
 	int	size;
 
 	size = 0;
-
+	if (n < 0 && ++size)
+		n *= -1;
 	while (n / 10 > 0)
 	{
-		size++;
 		n /= 10;
+		size++;
 	}
 	return (size + 1);
 }
 
 static int	isalldigit(char *str)
 {
+	if (*str == '-')
+		str++;
 	while (*str)
 		if (!ft_isdigit(*str++))
 			return (0);
@@ -40,12 +43,10 @@ static int	str_isvalidnum(char *str, t_stack *stack)
 	int	val;
 	int	iter;
 
-	val = 1;
-
-	if (*str == '-' && str++)
-		val = -1;
+	if (*str == '+')
+		str++;
 	len = ft_strlen(str);
-	val *= ft_atoi(str);
+	val = ft_atoi(str);
 	if (len == 0
 		|| !isalldigit(str)
 		|| (len > 1 && len != calc_intlen(val)))
@@ -57,12 +58,23 @@ static int	str_isvalidnum(char *str, t_stack *stack)
 	return (1);
 }
 
-static int	return_with_error(t_stack	*pushstack)
+int	free_stack(t_stack	*stack, int is_error)
 {
-	free(pushstack->rawstack);
-	free(pushstack->stack_a);
-	free(pushstack->stack_b);
-	ft_putstr_fd("Error", 1);
+	int	i;
+
+	i = 0;
+	if (stack->rawstack)
+	{
+		while (stack->rawstack[i])
+			free(stack->rawstack[i++]);
+		free(stack->rawstack);
+	}
+	if (stack->stack_b)
+		free(stack->stack_a);
+	if (stack->stack_a)
+		free(stack->stack_b);
+	if (is_error)
+		ft_putstr_fd("Error\n", 1);
 	return (1);
 }
 
@@ -83,7 +95,7 @@ int	gen_stacks(int ac, char **av, t_stack *stack)
 	while (stack->sa_size < stack->stacksize)
 	{
 		if (!str_isvalidnum(stack->rawstack[stack->sa_size], stack))
-			return (return_with_error(stack));
+			return (free_stack(stack, 1));
 		stack->stack_a[stack->sa_size]
 			= ft_atoi(stack->rawstack[stack->sa_size]);
 		stack->sa_size++;
