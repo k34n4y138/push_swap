@@ -1,19 +1,21 @@
 CC			= gcc
 CFLAG		= -Wall -Werror -Wextra
 
-SRCS		= main.c group_moves.c push_swap_moves.c rotate_moves.c stack_generator.c chunking_algo.c sorting_algo.c
+STACK_SRC	= group_moves.c push_swap_moves.c rotate_moves.c stack_generator.c
+STACK_HDRS	= stack_management.h
+SRCS		= main.c chunking_algo.c sorting_algo.c $(STACK_SRC)
 OBJS		= $(patsubst %.c,%.o,$(SRCS))
 
-HDRS		= main.h stack_management.h algos.h
+HDRS		= main.h algos.h $(STACK_HDRS)
 
-B_SRCS		=
-B_OBJS		=
-B_HRDS		=
+B_SRCS		= checker_bonus.c $(STACK_SRC)
+B_OBJS		= $(patsubst %.c,%.o,$(B_SRCS))
+B_HRDS		= $(STACK_HDRS)
 
 LIBFT		= libft/libft.a
 
 NAME		= push_swap
-
+B_NAME		= checker
 
 %.o			: %.c $(HDRS)
 	$(CC) $(CFLAG) -c $< -o $@
@@ -27,15 +29,17 @@ all			:$(NAME)
 $(LIBFT)	:
 	make -C libft
 
-bonus		:$(B_SRCS) $(B_HRDS) $(LIBFT)
-	$(CC) $(CFLAG) $(B_SRCS) -lft -LIBFT -o $(NAME)	
+bonus		: $(B_NAME)
+
+$(B_NAME)	:$(B_SRCS) $(B_HRDS) $(LIBFT)
+	$(CC) $(CFLAG) $(B_SRCS) -lft -Llibft -o $(B_NAME)	
 
 clean		:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(B_OBJS)
 	make -C libft fclean
 
 fclean		: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(B_NAME)
 
 re			:fclean $(NAME)
 

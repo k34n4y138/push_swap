@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:05:59 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/30 13:27:22 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:04:38 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,20 @@ int	ft_mergesort(int *stack, int size)
 	free(left);
 	free(right);
 	return (0);
+}
+
+int	*ft_mergesortcpy(int *stack, int size)
+{
+	int	*res;
+
+	res = ft_calloc(size, sizeof(int));
+	if (!res)
+		return (NULL);
+	ft_memmove(res, stack, size * sizeof(int));
+	if (ft_mergesort(res, size))
+	{
+		free(res);
+		return (NULL);
+	}
+	return (res);
 }

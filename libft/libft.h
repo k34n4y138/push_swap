@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:55:36 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/27 19:07:32 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:04:29 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 char	*ft_strnjoin(int size, char **strs, char *sep);
 int		ft_mergesort(int *stack, int size);
+int		*ft_mergesortcpy(int *stack, int size);
+char	*get_next_line(int fd);
 #endif

@@ -6,27 +6,24 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:28:41 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/30 17:48:04 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:03:40 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include <stdio.h>
 
 int	sort_stack(t_stack *stack)
 {
 	t_stack	tmps;
 
-	tmps.stack_a = ft_calloc(stack->sa_size, sizeof(int));
-	tmps.stack_b = ft_calloc(stack->sa_size, sizeof(int));
+	ft_bzero(&tmps, sizeof(t_stack));
+	tmps.stack_a = ft_mergesortcpy(stack->stack_a, stack->sa_size);
+	tmps.stack_b = ft_mergesortcpy(stack->stack_a, stack->sa_size);
 	if (!tmps.stack_a || !tmps.stack_b)
 		return (free_stack(&tmps, 1));
-	ft_memmove(tmps.stack_a, stack->stack_a, stack->sa_size * sizeof(int));
-	ft_mergesort(tmps.stack_a, stack->sa_size);
 	if (ft_memcmp(tmps.stack_a, stack->stack_a,
 			stack->sa_size * sizeof(int)) == 0)
 		return (0);
-	ft_memmove(tmps.stack_b, tmps.stack_a, stack->sa_size * sizeof(int));
 	while (stack->sa_size > 3)
 	{	
 		if (stack->sa_size > 8)
@@ -38,7 +35,7 @@ int	sort_stack(t_stack *stack)
 	}
 	sort_three(stack);
 	sort_b_to_a(stack, tmps.stack_b);
-	free_stack(&tmps, 1);
+	free_stack(&tmps, 0);
 	return (0);
 }
 
