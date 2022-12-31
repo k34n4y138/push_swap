@@ -31,8 +31,8 @@ $(LIBFT)	:
 
 bonus		: $(B_NAME)
 
-$(B_NAME)	:$(B_SRCS) $(B_HRDS) $(LIBFT)
-	$(CC) $(CFLAG) $(B_SRCS) -lft -Llibft -o $(B_NAME)	
+$(B_NAME)	:$(B_OBJS) $(B_HRDS) $(LIBFT)
+	$(CC) $(CFLAG) $(B_OBJS) -lft -Llibft -o $(B_NAME)	
 
 clean		:
 	rm -f $(OBJS) $(B_OBJS)
