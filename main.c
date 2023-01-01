@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:28:41 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/31 20:08:06 by zmoumen          ###   ########.fr       */
+/*   Updated: 2023/01/01 19:47:48 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	sort_stack(t_stack *stack)
 	}
 	if (ft_memcmp(tmps, stack->stack_a,
 			stack->sa_size * sizeof(int)) == 0)
+	{
+		free(tmps);
 		return (0);
+	}
 	while (stack->sa_size > 3)
 	{	
 		if (stack->sa_size > 8)
