@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:46:47 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/31 19:19:25 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/31 20:06:58 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	calc_intlen(int n)
 	int	size;
 
 	size = 0;
-	if (n < 0 && ++size)
-		n *= -1;
-	while (n / 10 > 0)
+	if (n < 0)
+		size++;
+	while (n / 10 != 0)
 	{
 		n /= 10;
 		size++;

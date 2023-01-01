@@ -24,7 +24,7 @@ $(NAME)		:$(LIBFT) $(OBJS)
 	$(CC) $(CFLAG) $(OBJS) -lft -Llibft -o $(NAME)
 
 
-all			:$(NAME)
+all			:$(NAME) bonus
 
 $(LIBFT)	:
 	make -C libft

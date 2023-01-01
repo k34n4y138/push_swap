@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 18:05:08 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/30 20:07:57 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/31 20:20:05 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ int	check_sorting(t_stack *stack)
 		if (!apply_instruction(stack, instruction))
 			not_sorted = -2;
 		free(instruction);
-		instruction = get_next_line(0);
+		if (!not_sorted)
+			instruction = get_next_line(0);
 	}
-	if (instruction)
-		free(instruction);
 	if (stack->sb_size)
 		not_sorted = -1;
 	if (not_sorted == 0 && ft_memcmp(expect, stack->stack_a, stack->stacksize))

@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:28:41 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/31 17:46:19 by zmoumen          ###   ########.fr       */
+/*   Updated: 2022/12/31 20:08:06 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int	sort_stack(t_stack *stack)
 	int	*tmps;
 
 	tmps = ft_mergesortcpy(stack->stack_a, stack->sa_size);
-	if (!tmps && (1 || write(1, "Error\n", 7)))
+	if (!tmps)
+	{
+		ft_putstr_fd("Error\n", 1);
 		return (1);
+	}
 	if (ft_memcmp(tmps, stack->stack_a,
 			stack->sa_size * sizeof(int)) == 0)
 		return (0);
