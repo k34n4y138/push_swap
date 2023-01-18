@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:46 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/30 13:13:06 by zmoumen          ###   ########.fr       */
+/*   Updated: 2023/01/17 10:07:52 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	rotation_dir(t_stack *stack, int pivotval)
 static void	aux_push_a_to_b(t_stack *stack, int chunkmid, int pivotval)
 {
 	push_b(stack, 1);
-	if (stack->stack_b[0] < chunkmid)
+	if (stack->stack_b[0] > chunkmid)
 	{
 		if (stack->stack_a[0] > pivotval)
 			rotate_stacks(stack, 1);

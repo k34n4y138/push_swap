@@ -6,11 +6,22 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:28:41 by zmoumen           #+#    #+#             */
-/*   Updated: 2023/01/01 19:47:48 by zmoumen          ###   ########.fr       */
+/*   Updated: 2023/01/18 10:10:48 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int	subchunk_devider(int stacksize)
+{
+	if (stacksize > 250)
+		return (6);
+	else if (stacksize > 100)
+		return (5);
+	else if (stacksize > 60)
+		return (3);
+	return (2);
+}
 
 int	sort_stack(t_stack *stack)
 {
@@ -29,12 +40,8 @@ int	sort_stack(t_stack *stack)
 		return (0);
 	}
 	while (stack->sa_size > 3)
-	{	
-		if (stack->sa_size > 8)
-			chunk_a_to_b(stack, tmps + stack->sb_size, stack->sa_size / 4);
-		else
-			chunk_a_to_b(stack, tmps + stack->sb_size, stack->sa_size / 2);
-	}
+		chunk_a_to_b(stack, tmps + stack->sb_size,
+			stack->sa_size / subchunk_devider(stack->sa_size));
 	sort_three(stack);
 	sort_b_to_a(stack, tmps);
 	free(tmps);
