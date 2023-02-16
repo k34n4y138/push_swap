@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 19:28:41 by zmoumen           #+#    #+#             */
-/*   Updated: 2023/01/18 10:10:48 by zmoumen          ###   ########.fr       */
+/*   Updated: 2023/02/16 18:34:50 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int	sort_stack(t_stack *stack)
 	while (stack->sa_size > 3)
 		chunk_a_to_b(stack, tmps + stack->sb_size,
 			stack->sa_size / subchunk_devider(stack->sa_size));
-	sort_three(stack);
+	if (stack->sa_size == 2)
+		sort_two(stack);
+	else if (stack->sa_size == 3)
+		sort_three(stack);
 	sort_b_to_a(stack, tmps);
 	free(tmps);
 	return (0);
@@ -57,7 +60,7 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	if (gen_stacks(ac - 1, av + 1, &stack))
-		return (1);
+		return (free_stack(&stack, 1));
 	ret = sort_stack(&stack);
 	free_stack(&stack, 0);
 	return (ret);

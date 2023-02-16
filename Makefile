@@ -1,7 +1,7 @@
 CC			= gcc
 CFLAG		= -Wall -Werror -Wextra
 
-STACK_SRC	= group_moves.c push_swap_moves.c rotate_moves.c stack_generator.c
+STACK_SRC	= group_moves.c push_swap_moves.c rotate_moves.c stack_generator.c args_validators.c
 STACK_HDRS	= stack_management.h
 SRCS		= main.c chunking_algo.c sorting_algo.c $(STACK_SRC)
 OBJS		= $(patsubst %.c,%.o,$(SRCS))

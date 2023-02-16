@@ -6,7 +6,7 @@
 /*   By: zmoumen <zmoumen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:34:18 by zmoumen           #+#    #+#             */
-/*   Updated: 2022/12/30 13:12:52 by zmoumen          ###   ########.fr       */
+/*   Updated: 2023/02/16 18:29:31 by zmoumen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,6 @@ int	reverse_rotate_stacks(t_stack *stack, int announce);
 
 int	gen_stacks(int ac, char **av, t_stack *stack);
 int	free_stack(t_stack	*stack, int is_error);
+int	rawargs_validation(int ac, char **av);
+int	str_isvalidnum(char *str, t_stack *stack);
 #endif
